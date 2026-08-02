@@ -281,18 +281,6 @@ body::before {
   border-color: rgba(255,255,255,0.7);
 }
 
-.hero-meta {
-  margin-top: 18px;
-  font-size: 13px; letter-spacing: 2px;
-  color: rgba(255,255,255,0.7);
-  font-weight: 500;
-  animation: fadeIn 1.2s ease-out 0.65s both;
-}
-.hero-meta .sep {
-  color: rgba(255,255,255,0.35);
-  margin: 0 10px;
-}
-
 .hero-scroll {
   position: absolute; bottom: 28px; left: 50%;
   transform: translateX(-50%);
@@ -309,25 +297,6 @@ body::before {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-/* Red seal stamp */
-.seal-stamp {
-  position: absolute;
-  width: 56px; height: 56px;
-  border: 2.5px solid #ff2d2d;
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  transform: rotate(-12deg);
-  font-family: "STXingkai", "KaiTi", "STKaiti", serif;
-  font-size: 12px; font-weight: 700;
-  color: #ff2d2d;
-  letter-spacing: 1px;
-  line-height: 1.3;
-  pointer-events: none;
-  z-index: 3;
-  background: rgba(255, 45, 45, 0.08);
-}
-.seal-1 { top: 130px; right: 28px; }
 
 /* ===== SECTION COMMON ===== */
 .section { padding: 60px 0; position: relative; }
@@ -627,13 +596,6 @@ body::before {
   position: relative;
   max-width: 480px; margin: 0 auto;
 }
-.quote-mark {
-  font-family: "STXingkai", "KaiTi", serif;
-  font-size: 56px; color: rgba(255,255,255,0.3);
-  margin-bottom: 8px;
-  line-height: 1;
-  font-weight: 700;
-}
 .quote-text {
   font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: clamp(30px, 8.5vw, 42px);
@@ -805,19 +767,22 @@ body.has-floating { padding-bottom: 84px; }
   .hero-soul { font-size: clamp(13px, 3.4vw, 16px); }
   .hero-quote { font-size: clamp(13px, 3.4vw, 15px); letter-spacing: 2px; }
   .hero-ai-notice { font-size: clamp(13px, 3.4vw, 15px); padding: 10px 14px 10px 16px; }
-  .hero-meta { font-size: 12px; }
   .hero-glow { width: 200px; height: 200px; top: 32%; }
   .hero-quote::before, .hero-quote::after { width: 12px; }
+  .btn-primary, .btn-outline { padding: 10px 20px; font-size: 13px; letter-spacing: 1px; }
   .section { padding: 48px 0; }
   .rewards-section, .quote-section, .join-section { padding: 48px 18px; }
   .footer { padding: 32px 18px; }
 }
 @media (max-width: 380px) {
   .judging-grid { grid-template-columns: 1fr; }
-  .hero-cta-wrap { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-outline { padding: 12px 22px; font-size: 13px; }
   .brand-runze img { height: 22px; }
   .brand-mark img { height: 26px; }
   .brand-bar { padding: 14px 16px; }
+  .floating-cta-title { font-size: 13px; letter-spacing: 0.5px; }
+  .floating-cta-sub { font-size: 10px; }
+  .floating-cta .btn-primary { padding: 10px 18px; font-size: 12px; }
 }
 </style>
 </head>
@@ -839,7 +804,7 @@ body.has-floating { padding-bottom: 84px; }
 <section class="hero">
   <div class="hero-glow"></div>
 
-  <h1 class="hero-title">《论语》<span class="ai-accent">X AI</span>创作计划</h1>
+  <h1 class="hero-title">《论语》<span class="ai-accent">X AI</span>创作大赛</h1>
 
   <div class="hero-title-sub">以经典驭<span class="ai-accent">AI</span>，以<span class="ai-accent">AI</span>释经典</div>
 
@@ -1065,7 +1030,7 @@ body.has-floating { padding-bottom: 84px; }
         <h3>加入专属社群</h3>
         <p>加入学习社群，AI相关学习计划及作品相关信息可随时在群内获取。</p>
         <div class="join-qr">
-          <img src="qrcode-community.png" alt="经典一刻AI创作计划社群二维码" style="width:100%;height:100%;object-fit:contain;border-radius:10px;">
+          <img src="qrcode-community.png" alt="经典一刻AI创作大赛社群二维码" style="width:100%;height:100%;object-fit:contain;border-radius:10px;">
         </div>
         <p class="join-card-note">扫码加入专属社群</p>
       </div>
@@ -1085,7 +1050,6 @@ body.has-floating { padding-bottom: 84px; }
 <!-- ===== 点睛句 ===== -->
 <section class="quote-section fade-in">
   <div class="quote-content">
-    <div class="quote-mark">「</div>
     <p class="quote-text">人能弘道<br>非道弘人</p>
     <p class="quote-attr">—— 孔子</p>
     <p class="quote-coda">
@@ -1103,7 +1067,7 @@ body.has-floating { padding-bottom: 84px; }
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
-  <div class="footer-name">经典一刻 · 《论语》XAI创作计划</div>
+  <div class="footer-name">经典一刻 · 《论语》X AI创作大赛</div>
   <div class="footer-sub">润泽园教育 — 让经典活起来，传出去</div>
 </footer>
 
