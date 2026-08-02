@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta property="og:title" content="经典一刻《论语》X AI创作大赛">
+<meta property="og:description" content="以经典驭AI，以AI释经典。学《论语》+ 免费AI实操 + 创作大赛。8月3日正式启动。">
+<meta property="og:type" content="website">
+<meta name="description" content="经典一刻《论语》X AI创作大赛 — 以经典驭AI，以AI释经典。学《论语》+ 免费AI实操+创作大赛。8月3日正式启动。">
+<title>经典一刻《论语》X AI创作大赛</title>
+
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: "PingFang SC", -apple-system, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: #ffffff;
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 80% 10%, #5a3b8a 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 35%, #2879d6 0%, transparent 60%),
+    linear-gradient(180deg,
+      #1a2a5e 0%,
+      #1f4d9b 18%,
+      #2a87c4 38%,
+      #3aaad0 55%,
+      #6db8d8 72%,
+      #c47fb4 88%,
+      #d97aa8 100%
+    );
+}
+
+/* Subtle noise overlay for texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.06;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Container */
+.container { max-width: 640px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+/* Brand Bar */
+.brand-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 22px;
+  z-index: 20;
+}
+.brand-runze img { height: 26px; width: auto; display: block; filter: brightness(0) invert(1); }
+.brand-mark img { height: 30px; width: auto; display: block; filter: brightness(0) invert(1); }
+
+/* Paper plane */
+.paper-plane {
+  position: absolute;
+  width: 28px; height: 28px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+.paper-plane svg { width: 100%; height: 100%; display: block; }
+.pp-1 { top: 14%; right: 14%; animation: floatPlane 8s ease-in-out infinite; }
+.pp-2 { top: 28%; left: 10%; animation: floatPlane 10s ease-in-out infinite 1s; }
+.pp-3 { top: 55%; right: 8%; animation: floatPlane 9s ease-in-out infinite 2s; }
+.pp-4 { top: 75%; left: 12%; animation: floatPlane 11s ease-in-out infinite 0.5s; }
+@keyframes floatPlane {
+  0%, 100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-14px) rotate(-4deg); }
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 70px 20px 40px;
+}
+
+/* Hero glow behind title */
+.hero-glow {
+  position: absolute;
+  top: 30%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(200,255,61,0.12) 0%, rgba(150,180,255,0.06) 40%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Decorative divider */
+.hero-divider {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(200,255,61,0.5), transparent);
+  margin: 0 auto 14px;
+  border-radius: 1px;
+  animation: fadeIn 1.2s ease-out 0.35s both;
+}
+
+.hero-title {
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  font-weight: 900;
+  font-size: clamp(30px, 8vw, 52px);
+  color: #ffffff;
+  letter-spacing: 1px;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  animation: fadeIn 1.2s ease-out 0.1s both;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  white-space: nowrap;
+}
+.hero-title-sub {
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+  font-weight: 800;
+  font-size: clamp(22px, 6vw, 38px);
+  color: #ffffff;
+  letter-spacing: 2px;
+  line-height: 1.35;
+  margin-bottom: 24px;
+  animation: fadeIn 1.2s ease-out 0.2s both;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  white-space: nowrap;
+}
+.hero-title-sub .ai-accent {
+  color: #c8ff3d;
+  font-family: "Arial Black", "Helvetica Neue", -apple-system, sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px rgba(200,255,61,0.5), 0 4px 20px rgba(0,0,0,0.2);
+  display: inline-block;
+  transform: translateY(-2px);
+}
+
+/* Hero brush highlight */
+.hero-soul {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 600;
+  font-size: clamp(14px, 3.6vw, 18px);
+  color: rgba(255,255,255,0.8);
+  line-height: 2;
+  letter-spacing: 1px;
+  margin: 0 auto 14px;
+  max-width: 360px;
+  animation: fadeIn 1.2s ease-out 0.3s both;
+}
+.hero-soul .em {
+  color: #ffe066;
+  font-weight: 700;
+  position: relative;
+}
+.hero-soul .em::after {
+  content: "";
+  position: absolute;
+  left: -4px; right: -4px; bottom: 2px;
+  height: 10px;
+  background: rgba(255, 224, 102, 0.35);
+  z-index: -1;
+  transform: skewX(-8deg);
+  border-radius: 2px;
+}
+
+/* Hero quote */
+.hero-quote {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(14px, 3.6vw, 17px);
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 3px;
+  margin: 0 auto 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  animation: fadeIn 1.2s ease-out 0.4s both;
+  position: relative;
+  display: inline-block;
+  padding: 0 20px;
+}
+.hero-quote::before,
+.hero-quote::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px; height: 1px;
+  background: rgba(200,255,61,0.3);
+}
+.hero-quote::before { right: 100%; }
+.hero-quote::after { left: 100%; }
+
+/* Hero tagline */
+.hero-tagline {
+  display: inline-block;
+  font-size: clamp(15px, 4.2vw, 19px);
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-weight: 700;
+  padding: 8px 18px;
+  margin: 0 auto 14px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 24px;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 1.2s ease-out 0.25s both;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+
+/* Hero AI notice */
+.hero-ai-notice {
+  font-size: clamp(14px, 3.6vw, 17px);
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 1px;
+  line-height: 2.2;
+  margin: 0 auto 12px;
+  font-weight: 500;
+  padding: 12px 18px 12px 20px;
+  border-left: 3px solid #c8ff3d;
+  background: rgba(200,255,61,0.06);
+  border-radius: 0 10px 10px 0;
+  text-align: left;
+  display: inline-block;
+  animation: fadeIn 1.2s ease-out 0.45s both;
+}
+.hero-ai-notice .em { color: #c8ff3d; font-weight: 700; }
+
+/* Hero CTA */
+.hero-cta-wrap {
+  display: flex; gap: 14px; justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeIn 1.2s ease-out 0.5s both;
+}
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff5a4a 0%, #e63946 100%);
+  color: #fff;
+  font-size: 15px; font-weight: 800;
+  letter-spacing: 2px;
+  padding: 14px 36px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(230,57,70,0.45);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(230,57,70,0.55);
+}
+.btn-outline {
+  display: inline-block;
+  background: rgba(255,255,255,0.1);
+  color: #ffffff;
+  font-size: 14px; font-weight: 600; letter-spacing: 2px;
+  padding: 13px 32px;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.7);
+}
+
+.hero-meta {
+  margin-top: 18px;
+  font-size: 13px; letter-spacing: 2px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+  animation: fadeIn 1.2s ease-out 0.65s both;
+}
+.hero-meta .sep {
+  color: rgba(255,255,255,0.35);
+  margin: 0 10px;
+}
+
+.hero-scroll {
+  position: absolute; bottom: 28px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.4);
+  animation: bounce 2s ease-in-out infinite;
+  font-weight: 600;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Red seal stamp */
+.seal-stamp {
+  position: absolute;
+  width: 56px; height: 56px;
+  border: 2.5px solid #ff2d2d;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  transform: rotate(-12deg);
+  font-family: "STXingkai", "KaiTi", "STKaiti", serif;
+  font-size: 12px; font-weight: 700;
+  color: #ff2d2d;
+  letter-spacing: 1px;
+  line-height: 1.3;
+  pointer-events: none;
+  z-index: 3;
+  background: rgba(255, 45, 45, 0.08);
+}
+.seal-1 { top: 130px; right: 28px; }
+
+/* ===== SECTION COMMON ===== */
+.section { padding: 60px 0; position: relative; }
+.sec-header { margin-bottom: 32px; text-align: center; }
+.sec-num {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 4px;
+  color: #c8ff3d;
+  margin-bottom: 14px;
+  background: rgba(200,255,61,0.12);
+  border: 1px solid rgba(200,255,61,0.3);
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+.sec-title {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(28px, 8vw, 38px); font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.sec-sub {
+  font-size: 14px; color: rgba(255,255,255,0.75);
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+/* ===== FOUR STEPS — Vertical timeline ===== */
+.steps { position: relative; }
+.step-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 18px;
+  padding: 0 0 32px 0;
+  position: relative;
+}
+.step-item:last-child { padding-bottom: 0; }
+.step-item::before {
+  content: "";
+  position: absolute;
+  left: 27px; top: 56px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(200,255,61,0.5), rgba(200,255,61,0.1));
+  border-radius: 1px;
+}
+.step-item:last-child::before { display: none; }
+
+.step-num-wrap { position: relative; z-index: 1; }
+.step-num-circle {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c8ff3d 0%, #7df59a 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Arial Black", sans-serif;
+  font-size: 16px; color: #1a2a5e;
+  font-weight: 900;
+  box-shadow: 0 4px 16px rgba(200,255,61,0.4);
+}
+
+.step-content {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 16px;
+  padding: 22px 22px;
+  backdrop-filter: blur(12px);
+}
+.step-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.step-title {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 22px; font-weight: 900; color: #ffffff;
+  letter-spacing: 2px;
+}
+.step-time {
+  font-family: "Arial", sans-serif;
+  font-size: 11px; color: #1a2a5e;
+  letter-spacing: 0.5px;
+  background: #c8ff3d;
+  border-radius: 14px;
+  padding: 4px 12px;
+  font-weight: 700;
+}
+.step-desc {
+  font-size: 14.5px; color: rgba(255,255,255,0.9);
+  line-height: 1.85;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.step-small {
+  font-size: 12.5px; color: rgba(255,255,255,0.75);
+  line-height: 1.85;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.18);
+  border-left: 3px solid #c8ff3d;
+  border-radius: 0 8px 8px 0;
+  margin-top: 4px;
+}
+.step-small .em { color: #ffe066; font-weight: 700; }
+
+/* ===== WHO ===== */
+.who-intro {
+  text-align: center;
+  font-size: 15px; color: rgba(255,255,255,0.92);
+  line-height: 2.1;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.who-intro .em { color: #c8ff3d; font-weight: 700; }
+
+.who-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.who-card {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 28px;
+  padding: 11px 26px;
+  text-align: center;
+  transition: background 0.3s, border-color 0.3s;
+  backdrop-filter: blur(8px);
+}
+.who-card:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(200,255,61,0.6);
+}
+.who-card h4 {
+  font-family: "PingFang SC", sans-serif;
+  font-size: 17px; color: #ffffff; font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* Parenting callout */
+.parenting-callout {
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(200,255,61,0.35);
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+.parenting-callout-label {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 3px;
+  color: #1a2a5e;
+  margin-bottom: 14px;
+  background: #c8ff3d;
+  padding: 4px 14px;
+  border-radius: 14px;
+  font-weight: 800;
+}
+.parenting-callout-text {
+  font-size: 15px; color: #ffffff;
+  line-height: 2;
+  font-weight: 500;
+}
+.parenting-callout-text .em {
+  color: #ffe066; font-weight: 800;
+}
+
+/* ===== REWARDS & JUDGING ===== */
+.rewards-section {
+  padding: 60px 24px;
+  position: relative;
+}
+.rewards-content { max-width: 640px; margin: 0 auto; position: relative; z-index: 2; }
+
+.rewards-grid {
+  display: grid; gap: 14px;
+  margin-bottom: 36px;
+}
+.reward-card {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 16px;
+  padding: 22px 22px;
+  display: flex; align-items: center; gap: 18px;
+  transition: transform 0.3s, background 0.3s, border-color 0.3s;
+  backdrop-filter: blur(10px);
+}
+.reward-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(200,255,61,0.5);
+}
+.reward-rank {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #c8ff3d 0%, #7df59a 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #1a2a5e;
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1.3;
+  font-weight: 900;
+  font-family: "PingFang SC", sans-serif;
+  letter-spacing: 0;
+  box-shadow: 0 4px 12px rgba(200,255,61,0.3);
+}
+.reward-rank.gold {
+  background: linear-gradient(135deg, #ffd84d 0%, #ffae3d 100%);
+  color: #1a2a5e;
+  box-shadow: 0 4px 16px rgba(255,184,61,0.4);
+}
+.reward-info h4 {
+  font-size: 16px; color: #ffffff; font-weight: 800;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.reward-info p {
+  font-size: 13px; color: rgba(255,255,255,0.78);
+  line-height: 1.7;
+  font-weight: 500;
+}
+.reward-info .amount {
+  font-size: 22px; color: #ffe066; font-weight: 900;
+  font-family: "Arial Black", sans-serif;
+}
+
+/* Judging */
+.judging-block {
+  text-align: center;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+.judging-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 3px;
+  color: #c8ff3d;
+  margin-bottom: 12px;
+  background: rgba(200,255,61,0.12);
+  border: 1px solid rgba(200,255,61,0.3);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+.judging-title {
+  font-family: "PingFang SC", sans-serif;
+  font-size: 24px; color: #ffffff; font-weight: 900;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.judging-sub {
+  font-size: 14px; color: rgba(255,255,255,0.75);
+  margin-bottom: 26px;
+  font-weight: 500;
+}
+.judging-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 480px; margin: 0 auto;
+}
+.judge-card {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  padding: 24px 18px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+}
+.judge-card-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c8ff3d 0%, #7df59a 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+  font-family: "Arial Black", sans-serif;
+  font-size: 14px; color: #1a2a5e; font-weight: 900;
+  box-shadow: 0 4px 12px rgba(200,255,61,0.3);
+}
+.judge-card h4 {
+  font-size: 18px; color: #ffffff; margin-bottom: 8px;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+.judge-card p {
+  font-size: 13px; color: rgba(255,255,255,0.78);
+  line-height: 1.8;
+  font-weight: 500;
+}
+
+/* ===== QUOTE ===== */
+.quote-section {
+  padding: 60px 24px;
+  text-align: center;
+  position: relative;
+}
+.quote-content {
+  position: relative;
+  max-width: 480px; margin: 0 auto;
+}
+.quote-mark {
+  font-family: "STXingkai", "KaiTi", serif;
+  font-size: 56px; color: rgba(255,255,255,0.3);
+  margin-bottom: 8px;
+  line-height: 1;
+  font-weight: 700;
+}
+.quote-text {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(30px, 8.5vw, 42px);
+  color: #ffffff;
+  letter-spacing: 6px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+  font-weight: 900;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.quote-attr {
+  font-size: 13px; color: rgba(255,255,255,0.7);
+  letter-spacing: 3px;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+.quote-coda {
+  font-size: 16px; color: rgba(255,255,255,0.92);
+  letter-spacing: 2px;
+  line-height: 2;
+  font-weight: 500;
+}
+
+/* ===== HOW TO JOIN ===== */
+.join-section {
+  padding: 60px 24px;
+}
+.join-grid {
+  display: grid; gap: 18px;
+  max-width: 520px; margin: 0 auto;
+}
+.join-card {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 18px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.3s, border-color 0.3s;
+  backdrop-filter: blur(12px);
+}
+.join-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200,255,61,0.5);
+}
+.join-step-label {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 3px;
+  color: #1a2a5e;
+  margin-bottom: 12px;
+  background: #c8ff3d;
+  padding: 4px 14px;
+  border-radius: 14px;
+  font-weight: 800;
+}
+.join-card h3 {
+  font-family: "PingFang SC", sans-serif;
+  font-size: 22px; color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+.join-card p {
+  font-size: 14px; color: rgba(255,255,255,0.85);
+  line-height: 1.85;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.join-card .btn-primary {
+  font-size: 14px; padding: 12px 30px;
+}
+
+.join-qr {
+  width: 140px; height: 140px;
+  margin: 0 auto 14px;
+  background: #ffffff;
+  border: 1px solid rgba(200,255,61,0.4);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+.join-qr-icon { font-size: 22px; color: rgba(26,42,94,0.4); margin-bottom: 4px; }
+.join-qr-text { font-size: 10px; color: rgba(26,42,94,0.5); letter-spacing: 1px; font-weight: 700; }
+.join-card-note {
+  font-size: 11px; color: rgba(255,255,255,0.55);
+  font-weight: 500;
+}
+
+/* Notice text */
+.notice-text {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  text-align: center;
+  line-height: 1.9;
+  letter-spacing: 1px;
+  padding: 30px 24px 10px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 24px;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+.footer-name {
+  font-family: "PingFang SC", sans-serif;
+  font-size: 18px; font-weight: 800;
+  letter-spacing: 3px; margin-bottom: 10px;
+}
+.footer-sub {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+/* ===== FLOATING CTA ===== */
+.floating-cta {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, transparent 0%, rgba(26,42,94,0.95) 30%, rgba(26,42,94,1) 100%);
+  padding: 18px 20px 22px;
+  display: none;
+  backdrop-filter: blur(12px);
+}
+.floating-cta.visible { display: block; }
+.floating-cta-inner {
+  max-width: 640px; margin: 0 auto;
+  display: flex; align-items: center; gap: 12px;
+}
+.floating-cta-text { flex: 1; }
+.floating-cta-title {
+  font-size: 16px; color: #ffffff; letter-spacing: 1px;
+  font-weight: 800;
+}
+.floating-cta-sub { font-size: 12px; color: rgba(255,255,255,0.7); font-weight: 500; margin-top: 2px; }
+.floating-cta .btn-primary {
+  white-space: nowrap; padding: 11px 26px; font-size: 14px;
+}
+body.has-floating { padding-bottom: 84px; }
+
+/* ===== FADE-IN ===== */
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in-scale {
+  opacity: 0; transform: scale(0.96);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.fade-in-scale.visible { opacity: 1; transform: scale(1); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 420px) {
+  .container { padding: 0 18px; }
+  .hero { padding: 60px 16px 36px; }
+  .hero-title { font-size: clamp(28px, 7.5vw, 34px); letter-spacing: 0.5px; }
+  .hero-title-sub { font-size: clamp(20px, 5.5vw, 24px); letter-spacing: 1px; }
+  .hero-tagline { font-size: clamp(14px, 4vw, 17px); padding: 7px 14px; }
+  .hero-soul { font-size: clamp(13px, 3.4vw, 16px); }
+  .hero-quote { font-size: clamp(13px, 3.4vw, 15px); letter-spacing: 2px; }
+  .hero-ai-notice { font-size: clamp(13px, 3.4vw, 15px); padding: 10px 14px 10px 16px; }
+  .hero-meta { font-size: 12px; }
+  .hero-glow { width: 200px; height: 200px; top: 32%; }
+  .hero-quote::before, .hero-quote::after { width: 12px; }
+  .section { padding: 48px 0; }
+  .rewards-section, .quote-section, .join-section { padding: 48px 18px; }
+  .footer { padding: 32px 18px; }
+}
+@media (max-width: 380px) {
+  .judging-grid { grid-template-columns: 1fr; }
+  .hero-cta-wrap { flex-direction: column; align-items: stretch; }
+  .brand-runze img { height: 22px; }
+  .brand-mark img { height: 26px; }
+  .brand-bar { padding: 14px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Paper planes -->
+<div class="paper-plane pp-1"><svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="paper-plane pp-2"><svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="paper-plane pp-3"><svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div class="paper-plane pp-4"><svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+<!-- Brand bar -->
+<header class="brand-bar">
+  <div class="brand-runze"><img src="logo-runze.png" alt="润泽园教育"></div>
+  <div class="brand-mark"><img src="logo-jingdian.png" alt="经典一刻"></div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-glow"></div>
+
+  <h1 class="hero-title">《论语》<span class="ai-accent">X AI</span>创作计划</h1>
+
+  <div class="hero-title-sub">以经典驭<span class="ai-accent">AI</span>，以<span class="ai-accent">AI</span>释经典</div>
+
+  <p class="hero-tagline">学《论语》 + AI实操 + 创作大赛</p>
+
+  <div class="hero-divider"></div>
+
+  <p class="hero-soul">
+    这个八月，由你来用<span class="em">AI</span>让论语活在当下<br>
+    网页、创意视频、海报……
+  </p>
+
+  <p class="hero-quote">人能弘道，非道弘人</p>
+
+  <p class="hero-ai-notice">
+    第一场<span class="em">AI</span>学习：8月4日晚18:00<br>
+    直播地点：<span class="em">润泽园教育</span>视频号
+  </p>
+
+  <div class="hero-cta-wrap">
+    <a href="#join" class="btn-primary">立即报名</a>
+    <a href="#steps" class="btn-outline">活动详情</a>
+  </div>
+
+  <div class="hero-scroll">SCROLL ↓</div>
+</section>
+
+<!-- ===== 四步走 ===== -->
+<section class="section fade-in" id="steps">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">四步走</div>
+      <h2 class="sec-title">学 · 练 · 做 · 评</h2>
+      <p class="sec-sub">从论语到作品，一条路走完</p>
+    </div>
+
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-num-wrap">
+          <div class="step-num-circle">01</div>
+        </div>
+        <div class="step-content">
+          <div class="step-head">
+            <span class="step-title">学论语</span>
+            <span class="step-time">8月3日起 · 每天15分钟</span>
+          </div>
+          <p class="step-desc">跟着经典一刻学《论语》，追随孔子周游列国。</p>
+          <p class="step-small">
+            8月论语全新升级：<span class="em">AI个性化</span>+<span class="em">周游列国互动</span>，敬请期待
+          </p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num-wrap">
+          <div class="step-num-circle">02</div>
+        </div>
+        <div class="step-content">
+          <div class="step-head">
+            <span class="step-title">学AI</span>
+            <span class="step-time">共四次 · 线上1小时</span>
+          </div>
+          <p class="step-desc">润泽园教育青年伙伴手把手教，0基础伙伴友好</p>
+          <p class="step-small">
+            做网站、AI视频、海报。市面上可能价值<span class="em">千元</span>的学习。
+          </p>
+          <p class="step-small" style="margin-top:8px;">
+            <span class="em">注意：</span>第一次学习将在8月4日晚18:00，于视频号<span class="em">「润泽园教育」</span>上直播，记得提前预约。
+          </p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num-wrap">
+          <div class="step-num-circle">03</div>
+        </div>
+        <div class="step-content">
+          <div class="step-head">
+            <span class="step-title">打磨作品</span>
+            <span class="step-time">8月24日 — 26日</span>
+          </div>
+          <p class="step-desc">主题「论语照亮了我」。把你心中那句经典做成作品。</p>
+          <p class="step-small">
+            尽情发挥你的想象力，<span class="em">AI都能帮你实现</span>。
+          </p>
+          <p class="step-small" style="margin-top:8px;">
+            参赛方式：后续会在社群和本活动页面更新。
+          </p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num-wrap">
+          <div class="step-num-circle">04</div>
+        </div>
+        <div class="step-content">
+          <div class="step-head">
+            <span class="step-title">投票评选</span>
+            <span class="step-time">8月27日 — 31日</span>
+          </div>
+          <p class="step-desc">所有作品公开投票，让好作品被更多人看见。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 谁可以来 ===== -->
+<section class="section fade-in">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">谁可以来</div>
+      <h2 class="sec-title">带上家人，一起创作</h2>
+      <p class="sec-sub">经典一刻的伙伴，欢迎携家人同行</p>
+    </div>
+
+    <p class="who-intro">
+      只要是<span class="em">经典一刻</span>的伙伴——<br>
+      你对《论语》很感兴趣——<br>
+      你渴望弘扬经典，去帮助更多迷茫的人——<br>
+      你就可以参与AI学习，可以提交作品。
+    </p>
+
+    <div class="who-grid">
+      <div class="who-card fade-in-scale"><h4>一个人</h4></div>
+      <div class="who-card fade-in-scale"><h4>亲子</h4></div>
+      <div class="who-card fade-in-scale"><h4>夫妻</h4></div>
+      <div class="who-card fade-in-scale"><h4>好友</h4></div>
+    </div>
+
+    <div class="parenting-callout">
+      <div class="parenting-callout-label">特别说明</div>
+      <p class="parenting-callout-text">
+        与其不让孩子接触AI，<br>
+        不如<span class="em">教孩子正确使用AI</span>。<br><br>
+        亲子共创，孩子学的不只是工具——<br>
+        是用AI表达想法，这是未来最核心的能力。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 参赛奖励与评选 ===== -->
+<section class="rewards-section fade-in">
+  <div class="rewards-content">
+    <div class="sec-header">
+      <div class="sec-num">参赛奖励与评选</div>
+      <h2 class="sec-title">参赛奖励</h2>
+      <p class="sec-sub">诚意和创意，比技巧更珍贵</p>
+    </div>
+
+    <div class="rewards-grid">
+      <div class="reward-card fade-in-scale">
+        <div class="reward-rank gold">一等奖</div>
+        <div class="reward-info">
+          <h4>十部经典讲师寄语版</h4>
+          <p>2名</p>
+        </div>
+      </div>
+      <div class="reward-card fade-in-scale">
+        <div class="reward-rank">前20名</div>
+        <div class="reward-info">
+          <h4>主讲老师一对一指导</h4>
+          <p>作品获得主讲老师亲自点评与指导</p>
+        </div>
+      </div>
+      <div class="reward-card fade-in-scale">
+        <div class="reward-rank">所有</div>
+        <div class="reward-info">
+          <h4>官网展出</h4>
+          <p>作品可在润泽园官网展出</p>
+        </div>
+      </div>
+      <div class="reward-card fade-in-scale">
+        <div class="reward-rank">更多</div>
+        <div class="reward-info">
+          <h4>更多可能性</h4>
+          <p>加入到更多项目共创中</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="judging-block">
+      <div class="judging-tag">评选标准</div>
+      <h3 class="judging-title">你的作品里，有没有你自己</h3>
+      <p class="judging-sub">我们只看这两件事</p>
+
+      <div class="judging-grid">
+        <div class="judge-card fade-in-scale">
+          <div class="judge-card-num">01</div>
+          <h4>内心的诚意</h4>
+          <p>你对弘扬经典帮助他人的愿力有多大？</p>
+        </div>
+        <div class="judge-card fade-in-scale">
+          <div class="judge-card-num">02</div>
+          <h4>创意性</h4>
+          <p>经典在你心里，长成了什么样子？</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 如何报名 ===== -->
+<section class="join-section fade-in" id="join">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-num">如何报名</div>
+      <h2 class="sec-title">三步加入</h2>
+      <p class="sec-sub">经典一刻伙伴专属</p>
+    </div>
+
+    <div class="join-grid">
+      <div class="join-card fade-in-scale">
+        <div class="join-step-label">第一步</div>
+        <h3>成为经典一刻学员</h3>
+        <p>加入论语课程，每天15分钟，跟亚东学论语。</p>
+        <a href="https://h5-s1.sibuqu.com/business/goods/classic?activityId=HD_LYAIGCJH_JDYK&channelId1=33" class="btn-primary" id="joinCourseBtn">立即加入经典一刻 →</a>
+      </div>
+
+      <div class="join-card fade-in-scale">
+        <div class="join-step-label">第二步</div>
+        <h3>加入专属社群</h3>
+        <p>加入学习社群，AI相关学习计划及作品相关信息可随时在群内获取。</p>
+        <div class="join-qr">
+          <img src="qrcode-community.png" alt="经典一刻AI创作计划社群二维码" style="width:100%;height:100%;object-fit:contain;border-radius:10px;">
+        </div>
+        <p class="join-card-note">扫码加入专属社群</p>
+      </div>
+
+      <div class="join-card fade-in-scale">
+        <div class="join-step-label">第三步</div>
+        <h3>上传你的AI作品</h3>
+        <p>作品上传入口暂未开放，预计8月24日开放。</p>
+        <div style="width:140px;height:44px;margin:0 auto;background:rgba(200,255,61,0.1);border:1.5px dashed rgba(200,255,61,0.5);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:11px;color:#c8ff3d;letter-spacing:1px;font-weight:700;">即将开放</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 点睛句 ===== -->
+<section class="quote-section fade-in">
+  <div class="quote-content">
+    <div class="quote-mark">「</div>
+    <p class="quote-text">人能弘道<br>非道弘人</p>
+    <p class="quote-attr">—— 孔子</p>
+    <p class="quote-coda">
+      经典需要人去传。<br>
+      这一次，轮到你了。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 免责声明 ===== -->
+<div class="notice-text">
+  温馨提示：学习中可能需要AI平台会员，费用约数十元，由平台独立收取，可按需自愿选购，非强制购买。<br>
+  活动的解释权归润泽园教育所有。
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-name">经典一刻 · 《论语》XAI创作计划</div>
+  <div class="footer-sub">润泽园教育 — 让经典活起来，传出去</div>
+</footer>
+
+<!-- ===== Floating CTA ===== -->
+<div class="floating-cta" id="floatingCta">
+  <div class="floating-cta-inner">
+    <div class="floating-cta-text">
+      <div class="floating-cta-title">经典一刻《论语》X AI创作大赛</div>
+      <div class="floating-cta-sub">8月3日正式启动・经典一刻专属学员活动</div>
+    </div>
+    <a href="#join" class="btn-primary">立即报名参与</a>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in, .fade-in-scale').forEach(function(el) {
+    observer.observe(el);
+  });
+})();
+
+(function() {
+  var cta = document.getElementById('floatingCta');
+  var hero = document.querySelector('.hero');
+  var shown = false;
+  window.addEventListener('scroll', function() {
+    if (!hero) return;
+    if (hero.getBoundingClientRect().bottom < window.innerHeight && !shown) {
+      cta.classList.add('visible');
+      document.body.classList.add('has-floating');
+      shown = true;
+    }
+  }, { passive: true });
+})();
+</script>
+
+</body>
+</html>
