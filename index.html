@@ -401,6 +401,27 @@ body::before {
 }
 .step-small .em { color: #ffe066; font-weight: 700; }
 
+/* Live poster link in step 2 */
+.live-poster-link {
+  display: inline-block;
+  margin-top: 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: transform 0.25s, box-shadow 0.25s;
+  line-height: 0;
+}
+.live-poster-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+}
+.live-poster-link img {
+  width: 160px;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
 /* ===== WHO ===== */
 .who-intro {
   text-align: center;
@@ -781,6 +802,7 @@ body.has-floating { padding-bottom: 84px; }
   .section { padding: 48px 0; }
   .rewards-section, .quote-section, .join-section { padding: 48px 18px; }
   .footer { padding: 32px 18px; }
+  .live-poster-link img { width: 140px; }
 }
 @media (max-width: 380px) {
   .judging-grid { grid-template-columns: 1fr; }
@@ -829,7 +851,7 @@ body.has-floating { padding-bottom: 84px; }
 
   <p class="hero-ai-notice">
     第一场<span class="em">AI</span>学习：8月4日晚18:00<br>
-    直播地点：<span class="em">润泽园教育</span>视频号
+    直播地点：<span class="em">润泽园教育</span>视频号 / 润泽园教育APP
   </p>
 
   <div class="hero-cta-wrap">
@@ -880,8 +902,11 @@ body.has-floating { padding-bottom: 84px; }
             做网站、AI视频、海报。市面上可能价值<span class="em">千元</span>的学习。
           </p>
           <p class="step-small" style="margin-top:8px;">
-            <span class="em">注意：</span>第一次学习将在8月4日晚18:00，于视频号<span class="em">「润泽园教育」</span>上直播，记得提前预约。
+            <span class="em">注意：</span>第一次学习将在8月4日晚18:00，于视频号<span class="em">「润泽园教育」</span>和润泽园教育APP上直播，记得提前预约。
           </p>
+          <a href="https://h5-s1.sibuqu.com/courseware?relId=90302&activityId=0&companyId=-1&firstShare=1618538&ignoreChannelParams=1&goodsId=0&lastShare=1618538&channelId1=30&courseId=0&resId=19452&channelId2=0&firstShareUId=1618538&channelType=1" target="_blank" rel="noopener noreferrer" class="live-poster-link">
+            <img src="live-poster.png" alt="点击进入8月4日直播">
+          </a>
         </div>
       </div>
 
