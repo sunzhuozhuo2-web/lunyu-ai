@@ -239,6 +239,32 @@ body::before {
 }
 .hero-ai-notice .em { color: #c8ff3d; font-weight: 700; }
 
+.hero-join-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 20px;
+  background: rgba(200,255,61,0.15);
+  border: 1.5px solid rgba(200,255,61,0.45);
+  border-radius: 22px;
+  color: #c8ff3d;
+  font-weight: 700;
+  font-size: clamp(13px, 3.2vw, 15px);
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  animation: joinPulse 2.2s ease-in-out infinite;
+}
+.hero-join-btn:hover {
+  background: rgba(200,255,61,0.28);
+  border-color: #c8ff3d;
+  box-shadow: 0 0 18px rgba(200,255,61,0.35);
+  transform: translateY(-1px);
+}
+@keyframes joinPulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(200,255,61,0.15); }
+  50% { box-shadow: 0 0 16px rgba(200,255,61,0.4); }
+}
+
 /* Hero CTA */
 .hero-cta-wrap {
   display: flex; gap: 14px; justify-content: center;
@@ -796,6 +822,7 @@ body.has-floating { padding-bottom: 84px; }
   .hero-soul { font-size: clamp(13px, 3.4vw, 16px); }
   .hero-quote { font-size: clamp(13px, 3.4vw, 15px); letter-spacing: 2px; }
   .hero-ai-notice { font-size: clamp(13px, 3.4vw, 15px); padding: 10px 14px 10px 16px; }
+  .hero-join-btn { padding: 6px 16px; font-size: 13px; }
   .hero-glow { width: 200px; height: 200px; top: 32%; }
   .hero-quote::before, .hero-quote::after { width: 12px; }
   .btn-primary, .btn-outline { padding: 10px 20px; font-size: 13px; letter-spacing: 1px; }
@@ -851,7 +878,7 @@ body.has-floating { padding-bottom: 84px; }
 
   <p class="hero-ai-notice">
     <span class="em">第二场：</span>0基础网页实操 · 8月9日晚21:00<br>
-    <a href="https://h5-s1.sibuqu.com/joinMeeting?activityId=0&firstShare=1789716&ignoreChannelParams=1&liveNo=440631473&tyMeetingId=126185&lastShare=1789716&channelId1=30&meetingType=1&channelId2=0&platform=3&isScan=2" target="_blank" rel="noopener noreferrer" style="color:#c8ff3d;text-decoration:underline;">点击加入会议室 →</a>
+    <a class="hero-join-btn" href="https://h5-s1.sibuqu.com/joinMeeting?activityId=0&firstShare=1789716&ignoreChannelParams=1&liveNo=440631473&tyMeetingId=126185&lastShare=1789716&channelId1=30&meetingType=1&channelId2=0&platform=3&isScan=2" target="_blank" rel="noopener noreferrer">点击加入会议室 →</a>
   </p>
 
   <div class="hero-cta-wrap">
